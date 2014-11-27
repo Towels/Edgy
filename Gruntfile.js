@@ -191,6 +191,7 @@ module.exports = function (grunt) {
           html: {
             steps: {
               js: ['concat', 'uglifyjs'],
+              json:['concat', 'uglifyjs'],
               css: ['cssmin']
             },
             post: {}
@@ -308,7 +309,8 @@ module.exports = function (grunt) {
             '*.html',
             'views/{,*/}*.html',
             'images/{,*/}*.{webp}',
-            'fonts/{,*/}*.*'
+            'fonts/{,*/}*.*',
+            'data/{,*/}*.*'
           ]
         }, {
           expand: true,
