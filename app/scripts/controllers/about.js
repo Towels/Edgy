@@ -8,7 +8,8 @@
  * Controller of the edgyApp
  */
 angular.module('edgyApp')
-.controller('AboutCtrl', function ($scope, $http) {
+.controller('AboutCtrl', function ($scope, $http, $filter) {
+	var orderBy = $filter('orderBy');
     $http
     	.get('data/team.json')
     	.then(function(res){
@@ -19,4 +20,26 @@ angular.module('edgyApp')
     	.then(function(res){
     		$scope.items = res.data;                
         });
+    $scope.order = function(){
+    	$scope.items = orderBy($scope.items, 'id', false);
+    };
+
+    $scope.cart = [];
+  	$scope.tempProduct = {};
+    $scope.addToCart = function(product){
+    	$scope.tempProduct.name = product.name;
+    	$scope.tempProduct.price = product.price;
+    	$scope.cart.push($scope.tempProduct);
+    	$scope.tempProduct = {};
+    };
+    $scope.removeFromCart = function(product){
+    	$scope.cart.pop(product);
+    };
+    $scope.total = function(){
+    	var res = 0;
+    	for(var i = 0; i< $scope.cart.length; i++){
+    		res = $scope.cart[i].price + res;
+    	}
+    	return res;
+    };
 });
