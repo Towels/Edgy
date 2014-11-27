@@ -14,4 +14,9 @@ angular.module('edgyApp')
     	.then(function(res){
     		$scope.team = res.data;                
         });
+    $http
+    	.get('data/items.json')
+    	.then(function(res){
+    		$scope.items = res.data;                
+        });
 });

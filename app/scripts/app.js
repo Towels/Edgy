@@ -25,7 +25,7 @@ angular
       })
       .when('/shop', {
         templateUrl: 'views/shop.html',
-        controller: 'ShopCtrl'
+        controller: 'AboutCtrl'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
