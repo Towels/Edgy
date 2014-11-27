@@ -1,1 +1,7 @@
-<p>This is the about view.</p>
+<section id="team">
+	<h1>About us</h1>
+	<h3>We are...</h3>
+	<article class="member" ng-repeat="member in team">
+		<h4>{{member.name}} <span class="small-caps">{{member.surname}}</span></h4>
+	</article>
+</section>

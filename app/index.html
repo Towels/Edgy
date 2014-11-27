@@ -22,20 +22,22 @@
 
     <!-- Add your site or application content here -->
     <div class="container">
-      <div class="header">
+      <header class="header" ng-controller="TabCtrl as tab">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#/about">About</a></li>
-          <li><a ng-href="#">Contact</a></li>
+          <li ng-class="{active: tab.isTab(0)}"><a ng-href="#/main" ng-click="tab.setTab(0)">Home</a></li>
+          <li ng-class="{active: tab.isTab(1)}"><a ng-href="#/shop" ng-click="tab.setTab(1)">Shop</a></li>
+          <li ng-class="{active: tab.isTab(2)}"><a ng-href="#/about" ng-click="tab.setTab(2)">About</a></li>
+          <li ng-class="{active: tab.isTab(3)}"><a ng-href="#/contact" ng-click="tab.setTab(3)">Contact</a></li>
         </ul>
         <h3 class="text-muted">edgy</h3>
-      </div>
+      </header>
 
       <div ng-view=""></div>
 
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
+      <footer class="footer">
+        <p class="alignleft">From Towels with <span class="glyphicon glyphicon-heart"></span></p>
+        <p class="alignright">&copy; 2014</p>
+      </footer>
     </div>
 
 
@@ -75,6 +77,8 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
+        <script scr="scripts/controllers/shop.js"></script>
+        <script src="scripts/controllers/tab.js"></script>
         <!-- endbuild -->
 </body>
 </html>
