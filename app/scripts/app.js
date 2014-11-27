@@ -31,11 +31,11 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
-      .when('/contact', {
-        templateUrl: 'views/contact.html',
+      .when('/nope', {
+        templateUrl: 'views/nope.html',
         controller: 'MainCtrl'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/nope'
       });
   });

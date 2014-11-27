@@ -8,6 +8,10 @@
  * Controller of the edgyApp
  */
 angular.module('edgyApp')
-  .controller('MainCtrl', function () {
-    
+  .controller('MainCtrl', function ($scope) {
+    $scope.loved = false;
+
+    $scope.love = function(){
+    	$scope.loved = true;
+    };
   });

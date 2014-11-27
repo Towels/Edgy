@@ -15,13 +15,18 @@ angular.module('edgyApp')
     	.then(function(res){
     		$scope.team = res.data;                
         });
+
+
     $http
     	.get('data/items.json')
     	.then(function(res){
     		$scope.items = res.data;                
         });
+
+    $scope.reverse = false;
     $scope.order = function(){
-    	$scope.items = orderBy($scope.items, 'id', false);
+    	$scope.items = orderBy($scope.items, 'id', $scope.reverse);
+        $scope.reverse = !($scope.reverse);
     };
 
     $scope.cart = [];
@@ -35,6 +40,7 @@ angular.module('edgyApp')
     $scope.removeFromCart = function(product){
     	$scope.cart.pop(product);
     };
+
     $scope.total = function(){
     	var res = 0;
     	for(var i = 0; i< $scope.cart.length; i++){
