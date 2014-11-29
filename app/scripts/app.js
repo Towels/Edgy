@@ -11,11 +11,11 @@
 angular
   .module('edgyApp', [
     'ngAnimate',
-    'ngCookies',
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ngDialog'
   ])
   .config(function ($routeProvider) {
     $routeProvider

@@ -10,12 +10,27 @@
 		<button ng-click="addToCart(item)">Add</button>
 		</blockquote>
 	</article>
-	<p>Cart</p>
-	<ul>
-	<li ng-repeat="product in cart track by $index">
-	{{product.name}} for {{product.price | currency}} 
-	<button ng-click="removeFromCart(product.$index)">Remove</button>
-	</li>
-	</ul>
-	<p>Total: {{total() | currency}}</p>
+	<article>
+		<h2>Cart:</h2>
+		<table class="cart">
+			<tr ng-repeat="product in cart | object2Array | orderBy:'price':'false' track by $index ">
+				<td class="removeButton">
+					<button ng-click="removeFromCart(product.$index)">−</button>
+				</td>
+				<td class="name">
+					{{product.name}}
+				</td>
+				<td>
+					{{product.price | currency}} 
+				</td>
+			</tr>
+		</table>
+	</article>
+	<p class="alignleft"><strong>Total:</strong> {{total() | currency}}
+
+	<span ng-show="shipping">including {{shippingCost | currency}} shipping fee</span>
+	<span ng-hide="shipping">with free shipping</span></p>
+
+	<p class="alignright"><button ng-click="go()">Checkout</button></p>
+	<div style="clear: both"></div>
 </section>

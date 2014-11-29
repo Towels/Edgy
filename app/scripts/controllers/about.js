@@ -8,8 +8,17 @@
  * Controller of the edgyApp
  */
 angular.module('edgyApp')
-.controller('AboutCtrl', function ($scope, $http, $filter) {
-	var orderBy = $filter('orderBy');
+.filter('object2Array', function(){
+    return function(input) {
+      var out = []; 
+      for(var i in input){
+        out.push(input[i]);
+      }
+      return out;
+    };
+})
+.controller('AboutCtrl', function ($scope, $http, $filter, ngDialog) {
+	
     $http
     	.get('data/team.json')
     	.then(function(res){
@@ -25,7 +34,7 @@ angular.module('edgyApp')
 
     $scope.reverse = false;
     $scope.order = function(){
-    	$scope.items = orderBy($scope.items, 'id', $scope.reverse);
+    	$scope.items = $filter('orderBy')($scope.items, 'id', $scope.reverse);
         $scope.reverse = !($scope.reverse);
     };
 
@@ -41,11 +50,25 @@ angular.module('edgyApp')
     	$scope.cart.pop(product);
     };
 
+    $scope.shipping = false;
+    $scope.shippingCost = 3.5;
     $scope.total = function(){
     	var res = 0;
+        $scope.shipping = false;
     	for(var i = 0; i< $scope.cart.length; i++){
-    		res = $scope.cart[i].price + res;
+    		res += $scope.cart[i].price;
     	}
+        if(res < 20 && $scope.cart.length > 0){
+            $scope.shipping = true;
+            res += $scope.shippingCost;
+        }
     	return res;
+    };
+
+    $scope.go = function() {
+        if($scope.total() > 0){
+            $scope.cart = [];
+            ngDialog.open({template: 'views/success.html'});
+        }
     };
 });

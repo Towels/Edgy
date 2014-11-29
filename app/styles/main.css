@@ -94,3 +94,14 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
+
+.cart{
+  white-space: nowrap;
+  margin-bottom: 10px;
+}
+.cart .removeButton{
+  width: 50px;
+}
+.cart .name{
+  width: 150px;
+}
