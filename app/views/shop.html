@@ -25,5 +25,10 @@
 			</tr>
 		</table>
 	</article>
+	<p class="alignleft">
+		<strong>Total:</strong> {{total() | currency}}
+		<span ng-show="shipping">including {{shippingCost | currency}} shipping fee</span>
+		<span ng-hide="shipping">with free shipping</span></p>
+	<p class="alignright"><button ng-click="go()">Checkout</button></p>
 	<div style="clear: both"></div>
 </section>
