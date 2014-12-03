@@ -13,7 +13,7 @@
 	<article>
 		<h2>Cart:</h2>
 		<table class="cart">
-			<tr ng-repeat="product in cart | object2Array | orderBy:'price':'false' track by $index ">
+			<tr ng-repeat="product in cart | orderBy:'price':'false' track by $index ">
 				<td class="removeButton">
 					<button ng-click="removeFromCart(product.$index)">−</button>
 				</td>

@@ -8,15 +8,6 @@
  * Controller of the edgyApp
  */
 angular.module('edgyApp')
-.filter('object2Array', function(){
-    return function(input) {
-      var out = []; 
-      for(var i in input){
-        out.push(input[i]);
-      }
-      return out;
-    };
-})
 .controller('ShopCtrl', function ($scope, $http, $filter, ngDialog) {
     $http
     	.get('data/items.json')
@@ -31,12 +22,11 @@ angular.module('edgyApp')
     };
 
     $scope.cart = [];
-  	$scope.tempProduct = {};
     $scope.addToCart = function(product){
-    	$scope.tempProduct.name = product.name;
-    	$scope.tempProduct.price = product.price;
-    	$scope.cart.push($scope.tempProduct);
-    	$scope.tempProduct = {};
+    	var tempProduct = {};
+    	tempProduct.name = product.name;
+    	tempProduct.price = product.price;
+    	$scope.cart.push(tempProduct);
     };
     $scope.removeFromCart = function(product){
     	$scope.cart.pop(product);
