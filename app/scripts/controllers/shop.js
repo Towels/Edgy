@@ -9,35 +9,12 @@
  */
 angular.module('edgyApp')
 .controller('ShopCtrl', function ($scope, $http, ngDialog) {
-
-    $scope.items = [{
-        "id": 2,
-        "name": "Red Towel",
-        "desc": "Should not be trusted around hairdryers and bathtubs.",
-        "price": 2.45,
-        "inStock": true
-    },
-    {
-        "id:": 3,
-        "name": "Green Towel",
-        "desc": "A towel so green, it drives a Toyota Prius and occasionally holds speaks about the green house effect.",
-        "price": 3.95,
-        "inStock": true
-    },
-    {
-        "id": 1,
-        "name": "Yellow Towel",
-        "desc": "A yellow towel. Nothing to see here.",
-        "price": 0,
-        "inStock": true
-    },
-    {
-        "id": 200,
-        "name": "Not a Towel",
-        "desc": "Something that obviously is not a towel.",
-        "price": 2.20,
-        "instock": false
-    }]   
+   $http
+       .get('data/items.json')
+       .then(function(res){
+            $scope.items = res.data;
+    });
+    
     $scope.cart = [];
 
     $scope.addToCart = function(product){
@@ -71,5 +48,4 @@ angular.module('edgyApp')
             ngDialog.open({template: 'views/success.html'});
         }
     };
-            
 });
