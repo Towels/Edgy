@@ -1,36 +1,12 @@
 <section class="shop">
 	<h1>Super Awesome Mega Shop</h1>
 	<h2>Buy some awesome items</h2>
-	<button ng-click="order()">Sort by ID</button>
 	<article class="item" ng-repeat="item in items" ng-show="item.inStock">
 		<h4>{{item.name}}</h4>
 		<blockquote>
 		Price: {{item.price | currency}} <br />
 		{{item.desc}} <br />
-		<button ng-click="addToCart(item)">Add</button>
 		</blockquote>
 	</article>
-	<article>
-		<h2>Cart:</h2>
-		<table class="cart">
-			<tr ng-repeat="product in cart | object2Array | orderBy:'price':'false' track by $index ">
-				<td class="removeButton">
-					<button ng-click="removeFromCart(product.$index)">−</button>
-				</td>
-				<td class="name">
-					{{product.name}}
-				</td>
-				<td>
-					{{product.price | currency}} 
-				</td>
-			</tr>
-		</table>
-	</article>
-	<p class="alignleft"><strong>Total:</strong> {{total() | currency}}
-
-	<span ng-show="shipping">including {{shippingCost | currency}} shipping fee</span>
-	<span ng-hide="shipping">with free shipping</span></p>
-
-	<p class="alignright"><button ng-click="go()">Checkout</button></p>
 	<div style="clear: both"></div>
 </section>
