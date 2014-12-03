@@ -6,7 +6,24 @@
 		<blockquote>
 		Price: {{item.price | currency}} <br />
 		{{item.desc}} <br />
+		<button ng-click="addToCart(item)">Add</button>
 		</blockquote>
+	</article>
+	<article>
+		<h2>Cart:</h2>
+		<table class="cart">
+		<tr ng-repeat="product in cart track by $index ">
+				<td class="removeButton">
+					<button ng-click="removeFromCart(product.$index)">−</button>
+				</td>
+				<td class="name">
+					{{product.name}}
+				</td>
+				<td>
+					{{product.price | currency}}
+				</td>
+			</tr>
+		</table>
 	</article>
 	<div style="clear: both"></div>
 </section>

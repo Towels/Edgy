@@ -37,5 +37,18 @@ angular.module('edgyApp')
         "desc": "Something that obviously is not a towel.",
         "price": 2.20,
         "instock": false
-    }]               
+    }]   
+    $scope.cart = [];
+
+    $scope.addToCart = function(product){
+        var tempProduct = {};
+        tempProduct.name = product.name;
+        tempProduct.price = product.price;
+        $scope.cart.push(tempProduct);
+    };
+
+    $scope.removeFromCart = function(product){
+        $scope.cart.pop(product);
+    };
+            
 });
